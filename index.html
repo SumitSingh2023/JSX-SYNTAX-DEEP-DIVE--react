@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React-JSX Deep Dive</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+</body>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    // creating functional React component named jsxshowcase.
+    function JsxShowcase(){
+        // javascript variable
+        const name="sumit";
+        const isLoggedIn=true;
+
+        // javascript function
+        const greet=()=>{
+            return "Hello " + name 
+        }
+        
+        // javascript array
+        const hobbies=['Reading', 'dancing', 'coding', 'trave', 'adventure', 'writing', 'medical']
+        
+       // onClick event handlig
+        const [nam, setName]=React.useState('raja')
+        const [greeting,setGreeting]=React.useState("Hello")
+         
+        const mess=()=>{
+            setName('Rohit Singh')
+            setGreeting('ram ram bhai')
+        }
+
+        return (
+            <>
+            <p>{greeting} {nam} </p>
+            
+            {/* Element rendering*/}
+              <div>
+                <h1>Hello my name is sumit singh welcome to jsx showcase</h1>
+                <p>component demonstate features</p>
+                <button onClick={mess}>Click</button>
+              </div>
+
+            {/* javascript integration*/}
+               <p>Hello, {name}</p>
+               <p>{greet()}</p>
+
+            {/* conditional rendering*/}
+                {isLoggedIn ? (
+                    <div>
+                        <p>User is Logged in.</p>
+                        <ol>
+                            {hobbies.map((hobby,index)=>(
+                                <li key={index}>{hobby}</li>
+
+                            ))}
+                        </ol>
+                    </div>
+                ):(<p>User is not logged</p>)}
+
+                {/* conditional rendering based on variable*/}
+                {isLoggedIn && <p>User is still in.</p>}
+
+                {/* conditional rendering based on array length*/}
+                {hobbies.length<5 && <p>User has no hobbies</p>}
+            </>
+        )
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<JsxShowcase/>)
+</script>
+
+</html>
